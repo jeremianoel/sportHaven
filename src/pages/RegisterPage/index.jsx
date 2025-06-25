@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import Soccer from '../../assets/soccer.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useSearchParams } from 'react-router-dom';
+
+
 
 function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -12,6 +15,8 @@ function RegisterPage() {
   const [password, setPassword] = useState('')
   const [valid, setValid] = useState(false)
   const [message, setMessage] = useState('')
+  const [searchParams] = useSearchParams();
+  const prevPage = searchParams.get("prevPage") || "/";
   const navigate = useNavigate()
 
   const handleValid = () =>{
@@ -44,8 +49,8 @@ function RegisterPage() {
             console.log('Successfuly registered',response);
             setMessage(response.data.message.replace(/\.$/, ''));
             setTimeout(() => {
-                navigate('/login');
-            }, 2000);
+                navigate(`/login?prevPage=${prevPage}`);
+            }, 1500);
         } catch (error){
             if(error.response){
                 setTimeout(() => {
@@ -110,8 +115,8 @@ function RegisterPage() {
               </div>
             </div>
               {message && 
-                <div className={`w-100 flex mt-4 justify-center ${message === 'User register successfully' ? 'bg-emerald-500' : 'bg-red-600' } py-2 rounded-sm`}>
-                  <p className='text-white'>{message}</p>
+                <div className={`w-100 flex mt-4 justify-center ${message === 'User register successfully' ? 'bg-emerald-100 text-emerald-500' : 'bg-red-100 text-red-500'} py-2 rounded-sm`}>
+                  <p>{message}</p>
                 </div>
               }
               <button
@@ -127,7 +132,7 @@ function RegisterPage() {
                  ← Back
                 </Link>
                 <div className='w-full text-center'>
-                <p className='text-gray-900'>Have an account? <span className='text-emerald-500 hover:text-emerald-300 duration-200 hover:cursor-pointer'><Link to={'/login'}>Login</Link></span></p>
+                <p className='text-gray-900'>Have an account? <span className='text-emerald-500 hover:text-emerald-300 duration-200 hover:cursor-pointer'><Link to={`/login?prevPage=${prevPage}`}>Login</Link></span></p>
                 </div>
               </div>
              </form>

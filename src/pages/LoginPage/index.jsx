@@ -1,15 +1,23 @@
 import { useState, useEffect } from 'react'
 import Swim from '../../assets/swim.jpeg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
 function LoginPage() {
+  const [role, setRole] = useState(localStorage.getItem('role') || '');
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('role');
+    if (storedRole) setRole(storedRole);
+  }, []);
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [valid, setValid] = useState(false)
   const [message, setMessage] = useState('')
-  
-
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams();
+  const prevPage = searchParams.get("prevPage") || "/";
   const handleValid = () =>{
     if(email.trim() !== '' && password.trim() !== '')
     {
@@ -23,6 +31,7 @@ function LoginPage() {
                     'Content-Type': 'application/json'
                 }
         const API = 'https://sport-reservation-api-bootcamp.do.dibimbing.id/api/v1/login'
+        const API2 = 'https://sport-reservation-api-bootcamp.do.dibimbing.id/api/v1/me'
         const payload = {
         email: email,
         password: password
@@ -32,12 +41,31 @@ function LoginPage() {
             {
                 headers: headers
             });
+            const token = response.data.data.token
+            
             console.log('Successfuly logged in ✓',response);
             setMessage(response.data.message.replace(/\.$/, ''));
-            localStorage.setItem('token', response.data.data.token);
+            localStorage.setItem('token', token);
+
+            const response2 = await axios.get(API2, 
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              }
+            )
+            const userRole = response2.data.data.role;
+            localStorage.setItem('role', userRole);
+            setRole(userRole);
+
             setTimeout(() => {
-                navigate('/dashboard');
-            }, 2500);
+            if (userRole === 'admin') {
+                navigate('/dashboard', { replace: true });
+            } else {
+                navigate(prevPage || '/', { replace: true });
+            }
+        }, 1500);
+
         } catch (error){
             if(error.response){
                 setTimeout(() => {
@@ -75,8 +103,8 @@ function LoginPage() {
               <label className='text-start text-gray-900 w-full'>Password</label>
               <input type="password" onChange={(e) => setPassword(e.target.value)} className='w-100 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Password'/>
               {message && 
-                <div className={`w-100 flex mt-4 justify-center ${message === 'User login successfully' ? 'bg-emerald-500' : 'bg-red-600' }  py-2 rounded-sm`}>
-                  <p className='text-white'>{message}</p>
+                <div className={`w-100 flex mt-4 justify-center ${message === 'User login successfully' ? 'bg-emerald-100 text-emerald-500' : 'bg-red-100 text-red-500' }  py-2 rounded-sm`}>
+                  <p>{message}</p>
                 </div>
               }
               <button
@@ -92,7 +120,7 @@ function LoginPage() {
                  ← Back
                 </Link>
                 <div className='w-full text-center'>
-                <p className='text-gray-900'>No account yet? <span className='text-emerald-500 hover:text-emerald-300 duration-200 hover:cursor-pointer'><Link to={'/register'}>Register here</Link></span></p>
+                <p className='text-gray-900'>No account yet? <span className='text-emerald-500 hover:text-emerald-300 duration-200 hover:cursor-pointer'><Link to={`/register?prevPage=${prevPage}`}>Register here</Link></span></p>
                 </div>
               </div>
              </form>

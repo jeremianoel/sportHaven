@@ -25,7 +25,6 @@ const prevPage = () => {
     console.log(res.data.result.data);
     setCategories(res.data.result.data);
   } catch (err) {
-    alert('error');
     console.log(err)
   }
 };

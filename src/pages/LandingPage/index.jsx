@@ -28,7 +28,7 @@ const LandingPage = () => {
             </div>
         </div>
     </div>
-    <div className="container flex flex-row-reverse text-right items-center justify-center min-h-screen gap-20 py-50">
+    <div className="container bg-gray-50 flex flex-row-reverse text-right items-center justify-center min-h-screen gap-20 py-50">
         <div className="w-150 rounded-xl">
         <CarouselComp img1={Badminton} img2={Futsal} img3={Basket} img4={Volley} img5={Tennis}/>
         </div>

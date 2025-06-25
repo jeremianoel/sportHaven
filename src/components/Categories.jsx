@@ -50,8 +50,10 @@ const Categories = () => {
 
     return(
         <div className="flex flex-col items-center h-auto justify-center bg-gray-900">
-        <h1 className="mb-5 text-4xl font-semibold text-white mt-12">Sport Categories</h1>
-        <hr className="border-2 border-emerald-500 w-[18%]" />
+          <div className="flex flex-col w-[20%]">
+        <h1 className="mb-5 text-4xl font-semibold text-center text-white mt-12">Sport Categories</h1>
+        <hr className="border-0 h-1 bg-emerald-500 w-full transform -skew-x-50" />
+          </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10 px-6 py-10 place-items-center">
   {categories?.map((category) => (
     <div
