@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState,useEffect } from "react"
 import DashboardNavBar from "../../components/DashboardNavBar"
-import Photo from "../../assets/foto1.png"
+import Photo from "../../assets/Foto1.png"
 import {useAllCategories} from "../../hooks/useAllCategories"
 import {useActivites} from "../../hooks/useActivities"
 import {useAllTransactions} from "../../hooks/useAllTransactions"
