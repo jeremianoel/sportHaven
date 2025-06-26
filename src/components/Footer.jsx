@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 const Footer = () => {
 	return (
 		<div id="footer" className="max-w-full h-auto bg-gray-900 text-white flex flex-col justify-between items-start text-start">
-        <div className="flex flex-col lg:flex-row justify-around items-center sm:items-start w-full mt-6 mb-4 gap-3 lg:gap-0 px-6 text-center lg:text-left">
+        <div className="flex flex-col lg:flex-row justify-around items-center sm:items-center w-full mt-6 mb-4 gap-3 lg:gap-0 px-6 text-center lg:text-left">
             <div className='flex justify-center'>
             <img onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
                 src={Logo2} 
-                className="w-55 sm:w-75 py-1 duration-300 cursor-pointer hover:scale-110 mx-auto lg:mx-0"/>
+                className="w-55 sm:w-70 py-1 duration-300 cursor-pointer hover:scale-110 mx-auto lg:mx-0"/>
             </div>
             <div className="mt-3 space-y-2">
             <h1 className="mb-3 text-lg font-semibold">Contact Us</h1>
