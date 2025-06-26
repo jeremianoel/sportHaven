@@ -119,9 +119,9 @@ const TransactionPage = () => {
         <>
      <div className="">
         <NavBar/>
-        <div className='pt-[13%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
-        <div className='w-full bg-gray-50 h-auto flex gap-20 items-start justify-center'>
-        <div className='w-[30%] h-auto flex flex-col gap-5'>
+        <div className='md:pt-[13%] pt-[43%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
+        <div className='w-full bg-gray-50 h-auto md:flex-row flex flex-col gap-20 md:px-0 px-7 items-start justify-center'>
+        <div className='w-full md:w-[30%] h-auto flex flex-col gap-5'>
         <div className='w-full shadow-md h-auto py-4 items-center rounded-md bg-gray-900 flex px-5'>
         <h1 className='text-emerald-500 text-2xl font-semibold text-start'>Checkout</h1>
         </div>
@@ -137,11 +137,11 @@ const TransactionPage = () => {
         </div>
         <div className="flex items-start gap-3">
             <FaLocationDot className='text-emerald-500 bg-gray-900 rounded-md p-1 mt-1 size-8'/>
-            <p className="break-words w-60">{detail.address}</p>
+            <p className="break-words mt-2 w-60">{detail.address}</p>
         </div>
         </div>
         </div>
-        <div className='w-[23%] shadow-lg mb-20 h-auto rounded-md bg-white flex flex-col px-5 py-4 gap-2'>
+        <div className='w-full md:w-[23%] shadow-lg mb-20 h-auto rounded-md bg-white flex flex-col md:px-5 px-10 py-4 gap-2'>
         <h1 className='text-gray-900 text-xl font-semibold text-start'>Payment Methods</h1>
         <form onSubmit={(e) => confirm(e)} className='text-md font-semibold flex flex-col gap-2'>
          {payments.map((payment) => (
