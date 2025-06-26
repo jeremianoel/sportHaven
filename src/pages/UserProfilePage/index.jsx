@@ -95,19 +95,19 @@ const UserProfilePage = () => {
         </div>
         <div className='w-full shadow-md h-auto py-6 rounded-md bg-white flex flex-col px-6 gap-5'>
             {profiles &&
-            <div className="flex text-gray-900 items-center gap-6 text-md">
+            <div className="flex text-gray-900 items-center gap-4 text-md">
              <img src={Foto6} className='rounded-full size-23' />
              <div className='flex flex-col gap-5'>
                   
             <div className="flex">
                 <p className="w-20">Name</p>
-                <p className="font-semibold break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
+                <p className="font-semibold break-words mr-2 w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
                 {profiles.name}
                 </p>
             </div>
             <div className="flex">
                 <p className="w-20">Email</p>
-                <p className="font-semibold break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
+                <p className="font-semibold break-words mr-2 w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
                 {profiles.email}
                 </p>
             </div>
@@ -149,7 +149,7 @@ const UserProfilePage = () => {
                     } px-2 font-semibold text-sm py-1 rounded-md`}>
                     {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                     </p>
-                    <p className='break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden text-gray-400 text-xs md:text-sm'>{transaction.invoice_id}</p>
+                    <p className='break-words w-full mr-2 max-w-[200px] md:max-w-[100%] overflow-hidden text-gray-400 text-xs md:text-sm'>{transaction.invoice_id}</p>
                 </div>
                 <div className='flex justify-between gap-2'>
                     <div className='w-full flex flex-col gap-2'>
