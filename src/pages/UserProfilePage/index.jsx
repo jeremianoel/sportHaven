@@ -88,8 +88,8 @@ const UserProfilePage = () => {
      <div className="">
         <NavBar/>
         <div className='md:pt-[13%] pt-[43%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
-        <div className='w-full bg-gray-50 h-auto flex flex-col md:flex-row gap-20 items-start justify-center'>
-        <div className='md:w-[27%] w-full md:px-0 px-5 h-auto flex flex-col gap-5'>
+        <div className='md:px-0 px-5 w-full bg-gray-50 h-auto flex flex-col md:flex-row gap-20 items-start justify-center'>
+        <div className='md:w-[27%] w-full h-auto flex flex-col gap-5'>
         <div className='w-full shadow-md h-auto py-4 items-center rounded-md bg-gray-900 flex px-5'>
         <h1 className='text-emerald-500 text-xl font-semibold text-start'>My Profile</h1>
         </div>
@@ -101,18 +101,22 @@ const UserProfilePage = () => {
                   
             <div className="flex">
                 <p className="w-20">Name</p>
-                <p className="font-semibold"> {profiles.name}</p>
+                <p className="font-semibold break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
+                {profiles.name}
+                </p>
             </div>
             <div className="flex">
                 <p className="w-20">Email</p>
-                <p className="font-semibold"> {profiles.email}</p>
+                <p className="font-semibold break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden">
+                {profiles.email}
+                </p>
             </div>
             </div> 
             </div>
         }
         </div>
         </div>
-        <div className='flex flex-col px-5 md:px-0 w-full md:w-[45%] gap-5'>
+        <div className='flex flex-col w-full md:w-[45%] gap-5'>
         <div className='w-full shadow-md h-auto rounded-md bg-white flex flex-col px-5 py-4 gap-2'>
         <h1 className='text-gray-900 text-xl font-semibold text-start'>Transactions</h1>
         </div>
@@ -145,7 +149,7 @@ const UserProfilePage = () => {
                     } px-2 font-semibold text-sm py-1 rounded-md`}>
                     {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                     </p>
-                    <p className='text-gray-400 text-xs md:text-sm'>{transaction.invoice_id}</p>
+                    <p className='break-words w-full max-w-[200px] md:max-w-[100%] overflow-hidden text-gray-400 text-xs md:text-sm'>{transaction.invoice_id}</p>
                 </div>
                 <div className='flex justify-between gap-2'>
                     <div className='w-full flex flex-col gap-2'>
