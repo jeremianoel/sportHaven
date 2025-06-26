@@ -71,8 +71,10 @@ const Reviews = () => {
       className="items-center bg-cover bg-top justify-center flex h-180 bg-black"
       style={{ backgroundImage: `url(${LandingPage2})` }}
     >
-      <div className="flex h-85 rounded-2xl bg-white/95 w-[70%] justify-around items-center px-6">
-        <h1 className="text-4xl font-semibold text-gray-900 w-90 leading-normal">
+      <div className="flex flex-col lg:flex-row h-auto rounded-2xl bg-white/95 w-[90%] lg:w-[70%] justify-around items-center px-4 lg:px-6 py-8 gap-6">
+
+        <h1 className="text-2xl lg:text-4xl font-semibold text-gray-900 w-full lg:w-90 leading-normal text-center lg:text-left px-2">
+
           See what our <span className="font-bold text-emerald-500">players</span> say about us!
         </h1>
         <div className="flex items-center justify-between gap-4">
@@ -81,11 +83,12 @@ const Reviews = () => {
             disabled={currentIndex === 0}
         className={`min-w-[30px] h-[30px] rounded-full grid place-items-center ${currentIndex === 0
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-black hover:scale-120 duration-200 cursor-pointer"
+                  : "bg-black hover:scale-120 duration-200 hover:cursor-pointer"
               }`}>
         <MdKeyboardArrowLeft className="text-white"/>
       </button>
-            <div className="w-120 h-auto bg-white shadow-xl rounded-xl p-5 flex flex-col justify-between">
+           <div className="w-full lg:w-120 bg-white shadow-xl rounded-xl p-5 flex flex-col justify-between">
+
           <div className="flex gap-5">
             <img className="rounded-full w-16 h-16 object-cover" src={currentReview.photo} />
             <div>
@@ -102,7 +105,7 @@ const Reviews = () => {
             disabled={currentIndex === reviews.length - 1}
         className={`min-w-[30px] h-[30px] rounded-full grid place-items-center ${currentIndex === reviews.length - 1
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-black hover:scale-120 duration-200 cursor-pointer"
+                  : "bg-black hover:scale-120 duration-200 hover:cursor-pointer"
               }`}>
         <MdKeyboardArrowRight className="text-white"/>
       </button>

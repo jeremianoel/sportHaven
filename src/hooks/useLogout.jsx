@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import toast from "react-hot-toast"
 
 export const useLogout = () => {
     const token = localStorage.getItem('token')
@@ -20,6 +21,7 @@ export const useLogout = () => {
             console.log('Status:',response.data.message);
             localStorage.removeItem('token');
             localStorage.removeItem('role');
+            toast.success("You have logged out!")
             setTimeout(() => {
                 navigate('/');
             }, 500);

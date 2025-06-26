@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState,useEffect } from 'react'
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import Foto6 from "../../assets/Foto6.png";
 
 const UserProfilePage = () => {
 
@@ -84,17 +85,20 @@ const UserProfilePage = () => {
 
     return(
        <>
-     <div className="container">
+     <div className="">
         <NavBar/>
-        <div className='pt-[13%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
-        <div className='w-full bg-gray-50 h-auto flex gap-20 items-start justify-center'>
-        <div className='w-[27%] h-auto flex flex-col gap-5'>
+        <div className='md:pt-[13%] pt-[43%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
+        <div className='w-full bg-gray-50 h-auto flex flex-col md:flex-row gap-20 items-start justify-center'>
+        <div className='md:w-[27%] w-full md:px-0 px-5 h-auto flex flex-col gap-5'>
         <div className='w-full shadow-md h-auto py-4 items-center rounded-md bg-gray-900 flex px-5'>
         <h1 className='text-emerald-500 text-xl font-semibold text-start'>My Profile</h1>
         </div>
-        <div className='w-full shadow-md h-auto py-6 rounded-md bg-white flex flex-col px-5 gap-5'>
+        <div className='w-full shadow-md h-auto py-6 rounded-md bg-white flex flex-col px-6 gap-5'>
             {profiles &&
-            <div className="flex text-gray-900 flex-col gap-4 text-md">
+            <div className="flex text-gray-900 items-center gap-6 text-md">
+             <img src={Foto6} className='rounded-full size-23' />
+             <div className='flex flex-col gap-5'>
+                  
             <div className="flex">
                 <p className="w-20">Name</p>
                 <p className="font-semibold"> {profiles.name}</p>
@@ -103,11 +107,12 @@ const UserProfilePage = () => {
                 <p className="w-20">Email</p>
                 <p className="font-semibold"> {profiles.email}</p>
             </div>
+            </div> 
             </div>
         }
         </div>
         </div>
-        <div className='flex flex-col w-[45%] gap-5'>
+        <div className='flex flex-col px-5 md:px-0 w-full md:w-[45%] gap-5'>
         <div className='w-full shadow-md h-auto rounded-md bg-white flex flex-col px-5 py-4 gap-2'>
         <h1 className='text-gray-900 text-xl font-semibold text-start'>Transactions</h1>
         </div>
@@ -130,8 +135,8 @@ const UserProfilePage = () => {
             return (
                 <div key={transaction.id} className='w-full mb-2 shadow-sm h-auto rounded-md bg-white flex flex-col justify-around px-5 py-4 gap-7'>
                 <div className='flex gap-5 items-center justify-start'>
-                    <p className='font-semibold text-sm'>Sports</p>
-                    <p className='text-sm'>{formatted}</p>
+                    <p className='font-semibold text-xs md:text-sm'>Sports</p>
+                    <p className='text-xs md:text-sm'>{formatted}</p>
                     <p className={`${transaction.status === 'pending'
                         ? 'bg-amber-100 text-amber-500'
                         : transaction.status === 'success'
@@ -140,16 +145,16 @@ const UserProfilePage = () => {
                     } px-2 font-semibold text-sm py-1 rounded-md`}>
                     {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                     </p>
-                    <p className='text-gray-400 text-sm'>{transaction.invoice_id}</p>
+                    <p className='text-gray-400 text-xs md:text-sm'>{transaction.invoice_id}</p>
                 </div>
                 <div className='flex justify-between gap-2'>
                     <div className='w-full flex flex-col gap-2'>
-                    <p className='font-semibold text-lg'>{transaction.transaction_items?.sport_activities?.title || '—'}</p>
-                    <p className='w-[80%] font-normal text-md text-gray-400'>{transaction.transaction_items?.sport_activities?.address || '—'}</p>
+                    <p className='font-semibold text-md md:text-lg'>{transaction.transaction_items?.sport_activities?.title || '—'}</p>
+                    <p className='w-[80%] font-normal text-sm md:text-md text-gray-400'>{transaction.transaction_items?.sport_activities?.address || '—'}</p>
                     </div>
                     <div className='flex flex-col gap-2'>
-                    <p className='font-normal text-md text-gray-400'>Total Fee</p>
-                    <p className='font-semibold text-lg'>Rp{formattedPrice}</p>
+                    <p className='font-normal text-sm md:text-md text-gray-400'>Total Fee</p>
+                    <p className='font-semibold text-md md:text-lg'>Rp{formattedPrice}</p>
                     </div>
                 </div>
                 </div>

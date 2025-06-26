@@ -117,7 +117,7 @@ const TransactionPage = () => {
 
     return(
         <>
-     <div className="container">
+     <div className="">
         <NavBar/>
         <div className='pt-[13%] w-full bg-gray-50 min-h-screen flex gap-20 items-start justify-center'>
         <div className='w-full bg-gray-50 h-auto flex gap-20 items-start justify-center'>

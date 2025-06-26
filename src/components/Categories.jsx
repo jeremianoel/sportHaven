@@ -49,44 +49,52 @@ const Categories = () => {
     }
 
     return(
-        <div className="flex flex-col items-center h-auto justify-center bg-gray-900">
-          <div className="flex flex-col w-[20%]">
-        <h1 className="mb-5 text-4xl font-semibold text-center text-white mt-12">Sport Categories</h1>
-        <hr className="border-0 h-1 bg-emerald-500 w-full transform -skew-x-50" />
+        <div className="flex flex-col items-center justify-center bg-gray-900 px-4 py-10">
+      <div className="w-full max-w-md text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-white mb-3">
+          Sport Categories
+        </h1>
+        <hr className="border-0 h-1 bg-emerald-500 w-2/3 mx-auto transform -skew-x-50" />
+      </div>
+      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 px-2 sm:px-4 mb-6 w-full max-w-7xl">
+        {categories?.map((category) => (
+          <div
+            key={category.id}
+            className="relative rounded-2xl border-white border-3 hover:scale-105 duration-200 flex items-center justify-center h-20 sm:h-44 md:h-30 bg-center bg-cover text-white p-3 text-center"
+            style={{
+              backgroundImage: `url(${categoryImages[category.name] || DefaultImage})`,
+            }}
+          >
+            <p className="font-semibold text-md sm:text-2xl drop-shadow-lg">
+              {category.name}
+            </p>
           </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10 px-6 py-10 place-items-center">
-  {categories?.map((category) => (
-    <div
-      key={category.id}
-      className="rounded-2xl border-white border-3 hover:scale-115 duration-200 flex justify-center items-center w-55 h-30 bg-center bg-cover text-white"
-      style={{
-        backgroundImage: `url(${categoryImages[category.name] || DefaultImage})`,
-      }}
-    >
-      <p className="font-semibold text-3xl">{category.name}</p>
-    </div>
-  ))}
-</div>
-<div className="flex gap-15 mb-6">
-  <button
-        onClick={prevPage}
-        disabled={page === 1}
-        className={`min-w-[35px] h-[35px] rounded-full grid place-items-center ${page === 1
+        ))}
+      </div>
+      <div className="flex gap-6 mt-2">
+        <button
+          onClick={prevPage}
+          disabled={page === 1}
+          className={`w-[40px] h-[40px] rounded-full grid place-items-center ${
+            page === 1
               ? "bg-gray-300 cursor-not-allowed"
-              : "bg-black hover:scale-120 duration-200 cursor-pointer"
-          }`}>
-    <MdKeyboardArrowLeft className="text-white"/>
-  </button>
-  <button
-        onClick={nextPage}
-        disabled={page === 2}
-        className={`min-w-[35px] h-[35px] rounded-full grid place-items-center ${page === 2
+              : "bg-black hover:scale-120 duration-200 hover:cursor-pointer"
+          }`}
+        >
+          <MdKeyboardArrowLeft className="text-white" />
+        </button>
+        <button
+          onClick={nextPage}
+          disabled={page === 2}
+          className={`w-[40px] h-[40px] rounded-full grid place-items-center ${
+            page === 2
               ? "bg-gray-300 cursor-not-allowed"
-              : "bg-black hover:scale-120 duration-200 cursor-pointer"
-          }`}>
-    <MdKeyboardArrowRight className="text-white"/>
-  </button>
-</div>
+              : "bg-black hover:scale-120 duration-200 hover:cursor-pointer"
+          }`}
+        >
+          <MdKeyboardArrowRight className="text-white" />
+        </button>
+      </div>
     </div>
     )
 }

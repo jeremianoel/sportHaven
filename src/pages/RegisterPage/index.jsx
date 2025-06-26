@@ -79,27 +79,26 @@ function RegisterPage() {
 
   return (
     <>
-      <div className='container flex flex-col'>
-        <div className='flex'>
-        <div className="w-[57%] min-h-screen flex flex-col justify-end bg-cover" style={{backgroundImage: `url(${Soccer})`}}>
+      <div className='flex flex-col min-h-screen md:flex-row'>
+        <div className="hidden md:flex md:w-[57%] min-h-[50vh] md:min-h-screen flex-col justify-end bg-cover" style={{backgroundImage: `url(${Soccer})`}}>
           <div className='bg-gray-900/85 h-[27%] flex flex-col items-center justify-center gap-3'>
             <p className='w-130 leading-7 text-white text-xl'>"Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do."</p>
             <p className='w-130 text-start leading-7 text-emerald-500 font-semibold text-xl'>— Pelé</p>
           </div>
           </div>
-          <div className='flex flex-col items-center w-[43%] min-h-screen justify-center'>
+          <div className='flex flex-col items-center w-full md:w-[43%] min-h-screen justify-center'>
              <form onSubmit={(e) => handleRegister(e)} className='flex-col flex items-center text-sm gap-2'>
               <h1 className='font-bold text-3xl mb-3 text-gray-900 text-start w-full'>Register</h1>
               <label className='text-start text-gray-900 w-full'>Email Address</label>
-              <input value={email} type="text" onChange={(e) => setEmail(e.target.value)} className='w-100 border-1 h-8 focus:outline-emerald-500 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Email Address'/>
+              <input value={email} type="text" onChange={(e) => setEmail(e.target.value)} className='w-full border-1 h-8 focus:outline-emerald-500 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Email Address'/>
               <label className='text-start text-gray-900 w-full'>Name</label>
-              <input value={name} type="text" onChange={(e) => setName(e.target.value)} className='w-100 border-1 h-8 focus:outline-emerald-500 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Name'/>
+              <input value={name} type="text" onChange={(e) => setName(e.target.value)} className='w-full border-1 h-8 focus:outline-emerald-500 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Name'/>
               <label className='text-start text-gray-900 w-full'>Password</label>
-              <input value={password} type="password" onChange={(e) => setPassword(e.target.value)} className='w-100 h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Password'/>
+              <input value={password} type="password" onChange={(e) => setPassword(e.target.value)} className='w-full h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Password'/>
               <label className='text-start text-gray-900 w-full'>Confirm Password</label>
-              <input value={c_password} type="password" onChange={(e) => setC_Password(e.target.value)} className='w-100 h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Confirm Password'/>
+              <input value={c_password} type="password" onChange={(e) => setC_Password(e.target.value)} className='w-full h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Confirm Password'/>
               <label className='text-start text-gray-900 w-full'>Phone Number <span className='text-gray-500'>(Optional)</span></label>
-              <input value={phone_number} type="tel" onChange={(e) => setPhone_Number(e.target.value)} className='w-100 h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Phone Number'/>
+              <input value={phone_number} type="tel" onChange={(e) => setPhone_Number(e.target.value)} className='w-full h-8 focus:outline-emerald-500 border-1 border-gray-300 px-3 py-4 rounded-sm' placeholder='Enter Phone Number'/>
               <label className='text-start text-gray-900 w-full'>Role</label>
               <div className="relative w-full">
               <select
@@ -115,14 +114,14 @@ function RegisterPage() {
               </div>
             </div>
               {message && 
-                <div className={`w-100 flex mt-4 justify-center ${message === 'User register successfully' ? 'bg-emerald-100 text-emerald-500' : 'bg-red-100 text-red-500'} py-2 rounded-sm`}>
+                <div className={`w-full flex mt-4 justify-center ${message === 'User register successfully' ? 'bg-emerald-100 text-emerald-500' : 'bg-red-100 text-red-500'} py-2 rounded-sm`}>
                   <p>{message}</p>
                 </div>
               }
               <button
               type='submit'
               disabled={!valid}
-              className={`w-100 py-3 rounded-full mt-4 duration-300 border-1 ${
+              className={`w-90 py-3 rounded-full mt-4 duration-300 border-1 ${
                 valid
                   ? 'bg-emerald-500 hover:bg-emerald-300 text-white hover:cursor-pointer'
                   : 'bg-gray-200 border-gray-400 text-gray-400'
@@ -137,7 +136,6 @@ function RegisterPage() {
               </div>
              </form>
           </div>
-        </div>
       </div>
     </>
   )

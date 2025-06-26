@@ -28,12 +28,12 @@ import { useState } from "react";
     }
     return(
         <>
-        <div className="container min-h-screen pt-38 bg-gray-900">
+        <div className="min-h-screen pt-38 bg-gray-900">
         <NavBar/>
         {detail &&
         <>
-        <div key={detail.id} className="mt-7 mb-10 flex ml-20 justify-start">
-            <div className='w-[16%] flex flex-col gap-4'>
+        <div key={detail.id} className="mt-7 mb-10 flex flex-col lg:flex-row px-5 lg:px-20 gap-6">
+            <div className='w-full lg:w-[35%] flex flex-col gap-4'>
              <Link to='/activities' className='text-md text-white hover:cursor-pointer self-start'>
                  ← Back
              </Link>   
@@ -43,8 +43,8 @@ import { useState } from "react";
             <p className='text-gray-900 text-lg bg-white w-fit rounded-lg px-2 py-1'>Newbie - friendly</p>
             </div>                       
         </div>
-        <div className='w-full flex justify-between items-center h-auto bg-white'>
-          <div className='ml-20 rounded-lg bg-white w-[40%] h-auto my-20 shadow-md border-1 border-gray-200 px-10 py-10'>
+        <div className='w-full flex flex-col md:flex-row gap-20 px-5 justify-between items-center h-auto bg-white'>
+          <div className='lg:ml-0 rounded-lg bg-white w-full lg:w-[60%] h-auto my-20 shadow-md border-1 border-gray-200 px-10 py-10'>
             <div className='flex flex-col gap-10'>
             <p className='text-gray-900 text-md w-auto leading-7'>This sport activity is designed to provide an enjoyable and 
                 healthy experience for people. With supportive facilities and a 
@@ -74,7 +74,7 @@ import { useState } from "react";
             </div>
             </div>
           </div>
-          <div className='bg-gray-900 w-[25%] my-20 h-auto rounded-lg mr-20 flex flex-col items-center justify-between shadow-md'>
+          <div className='bg-gray-900 w-full lg:w-[30%] mt-10 lg:mt-0 my-20 h-auto rounded-lg flex flex-col items-center justify-between shadow-md'>
             <div className='flex flex-col items-start w-full ml-10 mt-4 gap-3'>
             <p className='text-white font-semibold text-2xl mb-4 '>Rp{formattedPrice}</p>
             <div className='flex gap-3 justify-start items-center'>
