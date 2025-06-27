@@ -1,15 +1,40 @@
 import { useState, useEffect } from "react"
 import DashboardNavBar from "../../components/DashboardNavBar"
 import Spinner from '../../components/Spinner'
-import axios from "axios"
-import toast from "react-hot-toast"
 import { useAllTransactions } from "../../hooks/useAllTransactions"
-import { FaPlusCircle } from "react-icons/fa";
 import { Link } from "react-router-dom"
 
 const DashboardTransactionPage = () => {
     const {transactions, loadingTransactions} = useAllTransactions()
-    const token = localStorage.getItem('token')
+    const [reset, setReset] = useState(false)
+    const [search,setSearch] = useState('')
+    const [searchBtn, setSearchBtn] = useState({
+    search: search
+  })
+
+  const handleReset = () => {
+    setSearch('');
+    setSearchBtn({
+      search: ''
+    });
+  }
+
+  const resetStatus = () => {
+    if(search) {
+      setReset(true)
+    } else setReset(false)
+  }
+
+  useEffect(()=>{
+    resetStatus()
+  },[search])
+
+  const handleSearch = () => {
+    setSearchBtn({
+      search: search
+    })
+  }
+
 
     return (
         <div className="flex bg-gray-100 ml-[17%] min-h-screen">
@@ -18,7 +43,12 @@ const DashboardTransactionPage = () => {
             <div className="w-full flex h-auto justify-between items-center bg-white shadow-md rounded-md px-7 py-5">
                 <p className="text-black text-3xl font-semibold">Transactions</p>
             </div>
-            <div className="px-15 w-full flex flex-col justify-around py-10 h-auto items-center bg-white shadow-md rounded-md">
+            <div className="px-15 w-full flex pb-15 flex-col justify-around h-auto items-center bg-white shadow-md rounded-md">
+                <div className='w-full lg:w-[85%] flex flex-col md:flex-row flex-wrap gap-4 rounded-xl bg-white px-6 py-10 justify-between items-center'>
+            <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className='w-full md:w-auto flex-1 border-1 focus:outline-emerald-500 border-gray-400 px-3 py-2 rounded-sm placeholder:text-gray-400' placeholder='Search Transaction by Title'/>
+            <button onClick={handleSearch} className='w-full md:w-24 text-white bg-emerald-500 py-2 rounded-sm hover:cursor-pointer'>Search</button> 
+            <button disabled={!reset} onClick={handleReset} className={`w-full md:w-24 text-white py-2 rounded-sm ${reset ? 'hover:cursor-pointer bg-gray-900' : 'bg-gray-400 cursor-not-allowed'}`}>Reset</button>
+            </div>
                 {loadingTransactions ? <Spinner /> : transactions?.length === 0 ?
                     <p className="py-10 text-center w-full">No transactions found.</p>
                     :
@@ -35,10 +65,27 @@ const DashboardTransactionPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {transactions.map((transaction, index) => {                         
-                        const formattedPrice = Number(transaction.total_amount).toLocaleString('id-ID');   
-                        return(        
-                        <tr key={transaction.id}>
+                        {(() => {
+            const filtered = transactions.filter((transaction) => {
+            const matchesTitle = transaction.transaction_items?.sport_activities?.title.toLowerCase().includes(searchBtn.search.toLowerCase());
+
+            return matchesTitle;
+          });
+
+          if (filtered.length === 0) {
+            return (
+                <tr>
+                <td colSpan="7" className="text-center text-gray-900 text-lg py-15">
+                    No transactions found.
+                </td>
+                </tr>
+            );
+            }
+
+          return filtered.map((transaction,index) => {
+            const formattedPrice = Number(transaction.total_amount).toLocaleString('id-ID');
+            return(
+              <tr key={transaction.id}>
                             <td className="border border-gray-300 py-4">{index + 1}</td>
                             <td className="border border-gray-300 py-4">{transaction.transaction_items?.sport_activities?.title}</td>
                             <td className="border border-gray-300 py-4">{transaction.invoice_id}</td>
@@ -65,7 +112,7 @@ const DashboardTransactionPage = () => {
                             </div>
                         </td>
                         </tr>
-                        )})}
+                    )})})()}
                     </tbody>
                 </table>}
             </div>
