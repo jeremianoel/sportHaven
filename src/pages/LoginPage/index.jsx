@@ -5,12 +5,6 @@ import axios from 'axios';
 
 function LoginPage() {
   const [role, setRole] = useState(localStorage.getItem('role') || '');
-
-  useEffect(() => {
-    const storedRole = localStorage.getItem('role');
-    if (storedRole) setRole(storedRole);
-  }, []);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [valid, setValid] = useState(false);
@@ -44,7 +38,6 @@ function LoginPage() {
 
       const userRole = response2.data.data.role;
       localStorage.setItem('role', userRole);
-      setRole(userRole);
 
       setTimeout(() => {
         navigate(userRole === 'admin' ? '/dashboard' : prevPage, { replace: true });
