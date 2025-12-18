@@ -4,7 +4,6 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 function LoginPage() {
-  const [role, setRole] = useState(localStorage.getItem('role') || '');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [valid, setValid] = useState(false);
